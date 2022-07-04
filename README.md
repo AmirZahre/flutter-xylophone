@@ -36,7 +36,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![screenshot]](#)
+<p align="center">
+<img src="images/screenshot.png" width="200" />
+</p>
 
 
 This application utilizes Flutter, an open source Dart framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
