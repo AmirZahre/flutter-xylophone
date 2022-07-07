@@ -21,9 +21,20 @@ class XylophoneKey extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  /// Returns a [Color] from the [colors] property. In case of exceptions,
+  /// a random primary colour is returned.
+  Color getKeyColour(index) {
+    try {
+      return colors[index];
+    } catch (e) {
+      return Colors.primaries[Random().nextInt(Colors.primaries.length)];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<bool> randomizeColor = ValueNotifier(false);
+
     return FutureBuilder(
       future: AudioHelper.getSoundCount(),
       builder: (_, AsyncSnapshot<int> snapshot) {
@@ -41,7 +52,7 @@ class XylophoneKey extends StatelessWidget {
                         color: randomizeColor.value
                             ? Colors.primaries[
                                 Random().nextInt(Colors.primaries.length)]
-                            : colors[soundNum - 1]),
+                            : getKeyColour(soundNum - 1)),
                     onTap: () => AudioHelper.playSound(soundNum),
                     onLongPress: () =>
                         randomizeColor.value = !randomizeColor.value,
